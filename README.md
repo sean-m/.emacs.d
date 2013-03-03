@@ -1,3 +1,9 @@
+# This is my custom Emacs Prelude config
+
+This is a customized Emacs Prelude install, fixed the versioning issue
+with the MELPA erlang package depdending on flymake-mode-0.4.6, fixed
+by changing dependency to flymake-0.4.13 which is available in the repos.
+
 Emacs Prelude
 =============
 
