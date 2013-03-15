@@ -7,6 +7,28 @@
 ;;; Code:
 
 ;; Show line numbers in the left margin
+(package-initialize)
+
+(defvar personal-packages
+             '(fill-column-indicator mark-multiple rect-mark))
+
+;; This block was taken from the a Prelude init script and modified
+
+(defun personal-packages-installed-p ()
+  ;; check if the listed packages are installed
+  (loop for p in personal-packages
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+
+(unless (personal-packages-installed-p)
+  ;; check for new packages (package versions)
+  (message "%s" "Emacs Prelude is now refreshing its package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  ;; install the missing packages
+  (dolist (p personal-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 (global-linum-mode 1)
 
