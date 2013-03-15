@@ -5,6 +5,7 @@
 ;;; configuration files.
 
 ;;; Code:
+(load-library "~/personal/repo.el")
 
 ;; Show line numbers in the left margin
 (package-initialize)
