@@ -11,7 +11,7 @@
 (package-initialize)
 
 (defvar personal-packages
-             '(fill-column-indicator mark-multiple rect-mark))
+             '(fill-column-indicator mark-multiple rect-mark flymake))
 
 ;; This block was taken from the a Prelude init script and modified
 
