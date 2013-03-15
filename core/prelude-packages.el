@@ -41,7 +41,7 @@
 
 (defvar prelude-packages
   '(ace-jump-mode ack-and-a-half elisp-slime-nav exec-path-from-shell
-                  expand-region flycheck gist
+                  expand-region flycheck flymake gist
                   git-commit-mode gitconfig-mode gitignore-mode
                   guru-mode helm helm-projectile
                   magit magithub melpa
