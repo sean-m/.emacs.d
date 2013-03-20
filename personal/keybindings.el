@@ -1,7 +1,16 @@
-;;; Custom keybindings go here
+;;; keybindings.el --- Custom keybindings go here
+;;; Commentary:
+
+;;; Code:
+
+;; Comment region
+
+(global-set-key (kbd "C-c C-e") 'comment-region)
+(global-set-key (kbd "C-c C-u") 'uncomment-region)
 
 ;; Replace rectangle-text with inline-string-rectangle
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
+
 
 ;; Make rectangle selections visible
 (require 'mark-multiple)
@@ -20,4 +29,11 @@
                    (if rm-mark-active
                        (rm-exchange-point-and-mark p) (exchange-point-and-mark p))))
 
+;; Line Join
+(global-set-key (kbd "M-j")
+                (lambda ()
+                  (interactive)
+                  (join-line -1)))
+
 (provide 'keybindings)
+;;; keybindings.el ends here
