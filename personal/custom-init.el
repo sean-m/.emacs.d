@@ -41,7 +41,7 @@
 (setq fci-rule-color "black")
 
 ;; Set global font
-(set-frame-font "Consolas-9" nil)
+(set-frame-font "Ubuntu Mono-10" nil)
 
 ;; Reopen read-only files in tramp-mode
 (defun th-rename-tramp-buffer ()
