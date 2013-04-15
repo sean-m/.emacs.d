@@ -41,7 +41,6 @@
 (setq fci-rule-color "black")
 
 ;; Set global font
-;; Set global font
 (when (eq system-type 'gnu/linux)
     (set-frame-font "Ubuntu Mono-10" nil))
 (when (eq system-type 'windows-nt)
