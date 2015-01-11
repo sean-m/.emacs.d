@@ -37,20 +37,20 @@
 
 ;; Show a margin at 80 characters
 (require 'fill-column-indicator)
-(setq fci-rule-width 2)
-(setq fci-rule-color "black")
-
+(setq fci-rule-width 1)
+(setq fci-rule-color "grey")
+(fci-mode)
 
 ;; disable whitespace indicator
 (setq prelude-whitespace nil)
 
 ;; Set global font
 (when (eq system-type 'gnu/linux)
-    (set-frame-font "Monaco-10" nil))
+    (set-frame-font "Monaco-11" nil))
 (when (eq system-type 'windows-nt)
     (set-frame-font "Consolas-10" nil))
 (when (eq system-type 'darwin)
-    (set-frame-font "Monaco-11" nil))
+  (set-frame-font "Ubuntu Mono-12" nil))
 
 
 ;; Reopen read-only files in tramp-mode
@@ -103,6 +103,7 @@
       (th-find-file-sudo (ad-get-arg 0))
     ad-do-it))
 
+
 (defun th-find-file-sudo (file)
   "Opens FILE with root privileges."
   (interactive "F")
@@ -132,3 +133,17 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 (global-set-key (kbd "\M- ") 'hippie-expand)
+
+
+;; jedi python completion
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+
+
+;; Disable quote completion
+(require 'smartparens)
+(setq sp-autoescape-string-quote nil)
+
