@@ -46,11 +46,16 @@
 
 ;; Set global font
 (when (eq system-type 'gnu/linux)
-    (set-frame-font "Monaco-11" nil))
+  (set-frame-font "Ubuntu Mono-12" nil)) 
 (when (eq system-type 'windows-nt)
     (set-frame-font "Consolas-10" nil))
 (when (eq system-type 'darwin)
-  (set-frame-font "Ubuntu Mono-12" nil))
+  (set-frame-font "Monaco-10" nil)
+  ;; set keys for Apple keyboard, for emacs in OS X
+  (setq mac-command-modifier 'meta) ; make cmd key do Meta
+  (setq mac-option-modifier 'super) ; make opt key do Super
+  (setq mac-control-modifier 'control) ; make Control key do Control
+  (setq ns-function-modifier 'hyper))  ; make Fn key do Hyper
 
 
 ;; Reopen read-only files in tramp-mode
@@ -147,3 +152,7 @@
 (require 'smartparens)
 (setq sp-autoescape-string-quote nil)
 
+
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(add-hook 'org-mode-hook
+          '(lambda() (set-fill-column 80)))
