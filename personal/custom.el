@@ -153,6 +153,18 @@
 (setq sp-autoescape-string-quote nil)
 
 
+;; Auto-wrap at 80 char in Org Mode files
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook
           '(lambda() (set-fill-column 80)))
+
+
+;; Insert the date
+(require 'calendar)
+  (defun insdate-insert-current-date (&optional omit-day-of-week-p)
+    "Insert today's date using the current locale.
+  With a prefix argument, the date is inserted without the day of
+  the week."
+    (interactive "P*")
+    (insert (calendar-date-string (calendar-current-date) nil
+				  omit-day-of-week-p)))
