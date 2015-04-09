@@ -168,3 +168,6 @@
     (interactive "P*")
     (insert (calendar-date-string (calendar-current-date) nil
 				  omit-day-of-week-p)))
+
+;; Just for fun
+(global-set-key (kbd "C-c C-c z") 'zone)
