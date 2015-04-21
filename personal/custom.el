@@ -4,10 +4,6 @@
 ;;; These options are ones that don't somehow fit under the guise of the other
 ;;; configuration files.
 
-;;; Code:
-(load-library "~/.emacs.d/personal/repo.el")
-
-
 ; install aditional packages
 (prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple rect-mark flymake smex imenu))
 
