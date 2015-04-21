@@ -9,7 +9,7 @@
 
 
 ; install aditional packages
-(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple rect-mark flymake smex))
+(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple rect-mark flymake smex imenu))
 
 
 ;; Show line numbers in left margin
