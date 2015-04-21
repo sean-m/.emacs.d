@@ -1,6 +1,6 @@
 ;;; prelude-global-keybindings.el --- Emacs Prelude: some useful keybindings.
 ;;
-;; Copyright © 2011-2014 Bozhidar Batsov
+;; Copyright © 2011-2013 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -74,8 +74,6 @@
 (define-key 'help-command (kbd "C-v") 'find-variable)
 (define-key 'help-command (kbd "C-l") 'find-library)
 
-(define-key 'help-command (kbd "C-i") 'info-display-manual)
-
 ;; a complement to the zap-to-char command, that doesn't eat up the target character
 (autoload 'zap-up-to-char "misc" "Kill up to, but not including ARGth occurrence of CHAR.")
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
@@ -116,7 +114,8 @@
 (global-set-key (kbd "s-.") 'ace-jump-mode)
 (global-set-key (kbd "C-c J") 'ace-jump-buffer)
 (global-set-key (kbd "s->") 'ace-jump-buffer)
-(global-set-key (kbd "s-w") 'ace-window)
+
+(global-set-key [remap other-window] 'ace-window)
 
 (provide 'prelude-global-keybindings)
 

@@ -1,6 +1,6 @@
 ;;; prelude-helm.el --- Helm setup
 ;;
-;; Copyright © 2011-2014 Bozhidar Batsov
+;; Copyright © 2011-2013 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -11,8 +11,7 @@
 
 ;;; Commentary:
 
-;; Some configuration for Helm following this guide:
-;; http://tuhdo.github.io/helm-intro.html
+;; Some config for Helm.
 
 ;;; License:
 
@@ -35,32 +34,28 @@
 
 (prelude-require-packages '(helm helm-projectile))
 
-(require 'helm-config)
+(require 'helm-misc)
 (require 'helm-projectile)
 
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
+(defun helm-prelude ()
+  "Preconfigured `helm'."
+  (interactive)
+  (condition-case nil
+      (if (projectile-project-root)
+          (helm-projectile)
+        ;; otherwise fallback to `helm-mini'
+        (helm-mini))
+    ;; fall back to helm mini if an error occurs (usually in `projectile-project-root')
+    (error (helm-mini))))
 
-;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
-;; discussion of these options.
-(setq helm-split-window-in-side-p           t
-      helm-buffers-fuzzy-matching           t
-      helm-move-to-line-cycle-in-source     t
-      helm-ff-search-library-in-sexp        t
-      helm-ff-file-name-history-use-recentf t)
+(eval-after-load 'prelude-mode
+  '(progn
+     (define-key prelude-mode-map (kbd "C-c h") 'helm-prelude)
+     (easy-menu-add-item nil '("Tools" "Prelude")
+                         '("Navigation"
+                           ["Helm" helm-prelude]))))
 
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-
-(define-key helm-command-map (kbd "o")     'helm-occur)
-(define-key helm-command-map (kbd "g")     'helm-do-grep)
-(define-key helm-command-map (kbd "C-c w") 'helm-wikipedia-suggest)
-(define-key helm-command-map (kbd "SPC")   'helm-all-mark-rings)
-
-(push "Press <C-c p h> to navigate a project in Helm." prelude-tips)
+(push "Press <C-c h> to navigate a project in Helm." prelude-tips)
 
 (provide 'prelude-helm)
 

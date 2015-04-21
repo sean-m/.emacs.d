@@ -7,29 +7,26 @@
 ;;; Code:
 (load-library "~/.emacs.d/personal/repo.el")
 
-;; Show line numbers in the left margin
+
+; list the packages you want
+(setq package-list '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple rect-mark flymake smex))
+
+; list the repositories containing them
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+
+; activate all the packages (in particular autoloads)
 (package-initialize)
 
-(defvar personal-packages
-             '(fill-column-indicator mark-multiple rect-mark flymake smex))
+; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
 
-;; This block was taken from the a Prelude init script and modified
-
-(defun personal-packages-installed-p ()
-  ;; check if the listed packages are installed
-  (loop for p in personal-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
-
-(unless (personal-packages-installed-p)
-  ;; check for new packages (package versions)
-  (message "%s" "Emacs Prelude is now refreshing its package database...")
-  (package-refresh-contents)
-  (message "%s" " done.")
-  ;; install the missing packages
-  (dolist (p personal-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;; Show line numbers in left margin
 (global-linum-mode 1)

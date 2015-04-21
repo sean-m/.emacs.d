@@ -1,7 +1,7 @@
 ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
 
 (require 'prelude-c)
-(require 'prelude-clojure)
+;; (require 'prelude-clojure)
 ;; (require 'prelude-coffee)
 ;; (require 'prelude-common-lisp)
 (require 'prelude-css)
@@ -21,4 +21,3 @@
 (require 'prelude-scheme)
 ;; (require 'prelude-scss)
 (require 'prelude-xml)
-(require 'prelude-key-chord)

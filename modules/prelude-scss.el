@@ -1,6 +1,6 @@
 ;;; prelude-scss.el --- Emacs Prelude: scss support
 ;;
-;; Copyright © 2011-2014 Bozhidar Batsov
+;; Copyright © 2011-2013 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: http://www.batsov.com/emacs-prelude
@@ -35,11 +35,10 @@
 (require 'prelude-css)
 (prelude-require-packages '(scss-mode))
 
-;; turn off annoying auto-compile on save
-(setq scss-compile-at-save nil)
-
 (defun prelude-scss-mode-defaults ()
-  (prelude-css-mode-defaults))
+  (prelude-css-mode-defaults)
+  ;; turn off annoying auto-compile on save
+  (setq scss-compile-at-save nil))
 
 (setq prelude-scss-mode-hook 'prelude-scss-mode-defaults)
 
