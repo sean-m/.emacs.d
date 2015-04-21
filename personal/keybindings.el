@@ -14,7 +14,7 @@
 
 ;; Make rectangle selections visible
 (require 'mark-multiple)
-(require 'rect-mark)
+(require 'phi-rectangle)
 (global-set-key (kbd "C-x r C-SPC") 'rm-set-mark)
 (global-set-key (kbd "C-w")
                 '(lambda(b e) (interactive "r")

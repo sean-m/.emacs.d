@@ -4,8 +4,13 @@
 ;;; These options are ones that don't somehow fit under the guise of the other
 ;;; configuration files.
 
+;; Additional repos
+(add-to-list 'package-archives
+             '(("marmalade" . "https://marmalade-repo.org/packages/")
+              ("gnu" . "http://elpa.gnu.org/packages/")))
+
 ; install aditional packages
-(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple rect-mark flymake smex imenu))
+(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu))
 
 
 ;; Show line numbers in left margin
