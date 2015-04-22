@@ -15,6 +15,8 @@
 ;; Make rectangle selections visible
 (require 'mark-multiple)
 (require 'phi-rectangle)
+(phi-rectangle-mode)
+(global-set-key (kbd "C-x r C-SPC") 'phi-rectangle-set-mark-command)
 
 ;; Line Join
 (global-set-key (kbd "M-j")
