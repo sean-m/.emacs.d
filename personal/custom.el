@@ -10,7 +10,7 @@
               ("gnu" . "http://elpa.gnu.org/packages/")))
 
 ; install aditional packages
-(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu))
+(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu minimap))
 
 
 ;; Show line numbers in left margin
@@ -155,6 +155,11 @@
 (turn-off-smartparens-mode)
 (require 'autopair)
 (autopair-global-mode)
+
+
+;; Minimap
+(require 'minimap)
+(global-set-key (kbd "C-c C-m m") 'minimap-toggle)
 
 (provide 'custom)
 ;;; custom.el ends here
