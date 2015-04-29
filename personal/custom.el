@@ -159,7 +159,7 @@
 
 ;; Minimap
 (require 'minimap)
-(global-set-key (kbd "C-c C-m m") 'minimap-toggle)
+(minimap-toggle)
 
 (provide 'custom)
 ;;; custom.el ends here
