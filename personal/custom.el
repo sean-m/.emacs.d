@@ -4,13 +4,16 @@
 ;;; These options are ones that don't somehow fit under the guise of the other
 ;;; configuration files.
 
+(prefer-coding-system 'utf-8)
+
 ;; Additional repos
 (add-to-list 'package-archives
              '(("marmalade" . "https://marmalade-repo.org/packages/")
-              ("gnu" . "http://elpa.gnu.org/packages/")))
+               ("gnu" . "http://elpa.gnu.org/packages/")
+               ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ; install aditional packages
-(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu))
+(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu org))
 
 
 ;; Show line numbers in left margin
@@ -135,6 +138,9 @@
 ;; Auto-wrap at 80 char in Org Mode files
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook
+          '(lambda() (set-fill-column 80)))
+
+(add-hook 'markdown-mode-hook
           '(lambda() (set-fill-column 80)))
 
 
