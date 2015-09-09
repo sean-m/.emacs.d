@@ -107,6 +107,11 @@
       (list (cons "." (expand-file-name "backup" user-emacs-directory))))
 
 
+;; Visual Basic
+(autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
+(setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vbs\\)$" .
+                                visual-basic-mode)) auto-mode-alist))
+
 ;;ido mode
 (require 'ido)
 (ido-mode t)
@@ -159,8 +164,8 @@
 
 ;; Disable smartparens and enable autopair
 (turn-off-smartparens-mode)
-(require 'autopair)
-(autopair-global-mode)
+;;(require 'autopair)
+;;(autopair-global-mode)
 
 (provide 'custom)
 ;;; custom.el ends here
