@@ -13,7 +13,7 @@
                ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ; install aditional packages
-(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu org))
+(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu org rust-mode cargo))
 
 
 ;; Show line numbers in left margin
