@@ -13,7 +13,7 @@
                ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ; install aditional packages
-(prelude-require-packages '(autopair powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu org rust-mode cargo))
+(prelude-require-packages '(powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu org rust-mode cargo))
 
 
 ;; Show line numbers in left margin
@@ -162,10 +162,9 @@
 ;; Just for fun
 (global-set-key (kbd "C-c C-c z") 'zone)
 
-;; Disable smartparens and enable autopair
-(turn-off-smartparens-mode)
-;;(require 'autopair)
-;;(autopair-global-mode)
+;; Enable electric-pair
+(electric-pair-mode)
+
 
 (provide 'custom)
 ;;; custom.el ends here
