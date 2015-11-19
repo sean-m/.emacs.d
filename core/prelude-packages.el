@@ -67,7 +67,6 @@
     magit
     move-text
     operate-on-number
-    smartparens
     smartrep
     undo-tree
     volatile-highlights
