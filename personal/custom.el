@@ -112,6 +112,10 @@
 (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vbs\\)$" .
                                 visual-basic-mode)) auto-mode-alist))
 
+; start yasnippet with emacs
+(require 'yasnippet)
+(yas-global-mode 1)
+
 ;;ido mode
 (require 'ido)
 (ido-mode t)
@@ -145,7 +149,7 @@
 (add-hook 'org-mode-hook
           '(lambda() (set-fill-column 80)))
 
-(add-hook 'markdown-mode-hook
+(add-hook 'gfm-mode-hook
           '(lambda() (set-fill-column 80)))
 
 
@@ -163,9 +167,9 @@
 (global-set-key (kbd "C-c C-c z") 'zone)
 
 ;; Disable smartparens and enable autopair
+(smartparens-global-mode -1)
 (turn-off-smartparens-mode)
-;;(require 'autopair)
-;;(autopair-global-mode)
+(electric-pair-mode)
 
 (provide 'custom)
 ;;; custom.el ends here
