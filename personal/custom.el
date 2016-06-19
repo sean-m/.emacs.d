@@ -21,10 +21,11 @@
 
 
 ;; Show a margin at 80 characters
-(require 'fill-column-indicator)
-(setq fci-rule-width 1)
-(setq fci-rule-color "grey")
-(fci-mode)
+;; (require 'fill-column-indicator)
+;; (setq fci-rule-width 1)
+;; (setq fci-rule-color "grey")
+;; (fci-mode)
+
 
 ;; disable whitespace indicator
 (setq prelude-whitespace nil)
@@ -70,34 +71,7 @@
   (set-buffer (find-file (concat "/sudo::" file))))
 
 (provide 'custom-init)
-;;; custom-init.el ends here
 
-
-;; Open file as root?
-(defun th-rename-tramp-buffer ()
-  (when (file-remote-p (buffer-file-name))
-    (rename-buffer
-     (format "%s:%s"
-             (file-remote-p (buffer-file-name) 'method)
-             (buffer-name)))))
-
-(add-hook 'find-file-hook
-          'th-rename-tramp-buffer)
-
-(defadvice find-file (around th-find-file activate)
-  "Open FILENAME using tramp's sudo method if it's read-only."
-  (if (and (not (file-writable-p (ad-get-arg 0)))
-           (y-or-n-p (concat "File "
-                             (ad-get-arg 0)
-                             " is read-only.  Open it as root? ")))
-      (th-find-file-sudo (ad-get-arg 0))
-    ad-do-it))
-
-
-(defun th-find-file-sudo (file)
-  "Opens FILE with root privileges."
-  (interactive "F")
-  (set-buffer (find-file (concat "/sudo::" file))))
 
 
 ;; Backup files
@@ -107,22 +81,27 @@
       (list (cons "." (expand-file-name "backup" user-emacs-directory))))
 
 
+
 ;; Visual Basic
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
 (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vbs\\)$" .
                                 visual-basic-mode)) auto-mode-alist))
 
+
 ; start yasnippet with emacs
 (require 'yasnippet)
 (yas-global-mode 1)
+
 
 ;;ido mode
 (require 'ido)
 (ido-mode t)
 
+
 ;; smex
 (require 'smex)
 (smex-initialize)
+
 
 ;; column number mode
 (column-number-mode)
@@ -144,6 +123,7 @@
 (setq jedi:environment-virtualenv
       (list "pyvenv" "--system-site-packages"))
 
+
 ;; Auto-wrap at 80 char in Org Mode files
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook
@@ -152,6 +132,12 @@
 (add-hook 'gfm-mode-hook
           '(lambda() (set-fill-column 80)))
 
+
+;; Enable irony mode for C/C++
+(add-hook 'c-mode-hook 'my-c-mode-hook)
+(defun my-c-mode-hook ()
+  (irony-mode 1)
+  (smartparens-mode -1))
 
 ;; Insert the date
 (require 'calendar)
@@ -166,7 +152,13 @@
 ;; Just for fun
 (global-set-key (kbd "C-c C-c z") 'zone)
 
-;; Disable smartparens and enable autopair
+;; Disable smartparens and electric pair
+(eval-after-load 'smartparens  ;; attempt to crippler smartparens if it can't be disabled
+    '(progn
+       (sp-pair "(" nil :actions :rem)
+       (sp-pair "[" nil :actions :rem)
+       (sp-pair "'" nil :actions :rem)
+       (sp-pair "\"" nil :actions :rem)))
 (smartparens-global-mode -1)
 (turn-off-smartparens-mode)
 (electric-pair-mode)
