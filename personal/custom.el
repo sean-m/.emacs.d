@@ -36,7 +36,7 @@
 (when (eq system-type 'windows-nt)
     (set-frame-font "Consolas-10" nil))
 (when (eq system-type 'darwin)
-  (set-frame-font "Monaco-10" nil)
+  (set-frame-font "Monaco-11" nil)
   ;; set keys for Apple keyboard, for emacs in OS X
   (setq mac-command-modifier 'meta) ; make cmd key do Meta
   (setq mac-option-modifier 'super) ; make opt key do Super
@@ -165,3 +165,17 @@
 
 (provide 'custom)
 ;;; custom.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (jedi which-key smart-mode-line imenu-anywhere editorconfig crux beacon zop-to-char zenburn-theme yasnippet web-beautify volatile-highlights vkill undo-tree tidy smex smartrep smartparens slime roguel-ike rect-mark rainbow-mode rainbow-delimiters python-environment powershell phi-rectangle ov operate-on-number move-text minimap markdown-mode mark-multiple magit lua-mode key-chord json-rpc json-mode js2-mode jinja2-mode ido-completing-read+ guru-mode grizzl gotest god-mode go-projectile gitignore-mode gitconfig-mode git-timemachine git-rebase-mode git-commit-mode gist geiser fsharp-mode flx-ido fill-column-indicator expand-region exec-path-from-shell erlang epc elisp-slime-nav easy-kill discover-my-major diminish diff-hl csv-mode csharp-mode company-irony company-go company-anaconda cmake-mode cider chess cargo browse-kill-ring autopair anzu ack-and-a-half ace-window ace-jump-mode ace-jump-buffer ac-racer ac-anaconda))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
