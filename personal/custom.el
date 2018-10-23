@@ -6,8 +6,6 @@
 
 (prefer-coding-system 'utf-8)
 
-(start-server)
-
 ;; Additional repos
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -29,12 +27,6 @@
 (global-linum-mode 1)
 
 
-;; Show a margin at 80 characters
-(require 'fill-column-indicator)
-(setq fci-rule-width 1)
-(setq fci-rule-color "grey")
-(fci-mode)
-
 ;; disable whitespace indicator
 (setq prelude-whitespace nil)
 
@@ -42,7 +34,7 @@
 (when (eq system-type 'gnu/linux)
   (set-frame-font "Ubuntu Mono-12" nil)) 
 (when (eq system-type 'windows-nt)
-    (set-frame-font "Consolas-10" nil))
+  (set-face-attribute 'default nil :family "Consolas" :height 100))
 (when (eq system-type 'darwin)
   (set-frame-font "Monaco-10" nil)
   ;; set keys for Apple keyboard, for emacs in OS X
@@ -173,6 +165,8 @@
 
 ;; Enable electric-pair
 (electric-pair-mode)
+
+(server-start)
 
 
 (provide 'custom)
