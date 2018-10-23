@@ -6,11 +6,20 @@
 
 (prefer-coding-system 'utf-8)
 
+(start-server)
+
 ;; Additional repos
-(add-to-list 'package-archives
-             '(("marmalade" . "https://marmalade-repo.org/packages/")
-               ("gnu" . "http://elpa.gnu.org/packages/")
-               ("melpa" . "http://melpa.milkbox.net/packages/")))
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  ;;(add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize)
 
 ; install aditional packages
 (prelude-require-packages '(powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu org rust-mode cargo))
@@ -168,3 +177,17 @@
 
 (provide 'custom)
 ;;; custom.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (erlang slime cider clojure-mode which-key super-save imenu-anywhere hl-todo editorconfig crux beacon zop-to-char zenburn-theme volatile-highlights undo-tree smex smartrep smartparens rainbow-mode rainbow-delimiters powershell phi-rectangle ov operate-on-number move-text mark-multiple magit key-chord json-mode js2-mode jedi ido-ubiquitous guru-mode grizzl gotest god-mode go-projectile gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido fill-column-indicator expand-region elisp-slime-nav easy-kill discover-my-major diminish diff-hl csharp-mode company-go company-anaconda cargo browse-kill-ring anzu ace-window ace-jump-mode ace-jump-buffer))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
