@@ -7,10 +7,17 @@
 (prefer-coding-system 'utf-8)
 
 ;; Additional repos
-(add-to-list 'package-archives
-             '(("marmalade" . "https://marmalade-repo.org/packages/")
-               ("gnu" . "http://elpa.gnu.org/packages/")
-               ("melpa" . "http://melpa.milkbox.net/packages/")))
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  ;;(add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize)
 
 ; install aditional packages
 (prelude-require-packages '(powershell csharp-mode jedi fill-column-indicator mark-multiple phi-rectangle flymake smex imenu org rust-mode cargo))
@@ -20,12 +27,6 @@
 (global-linum-mode 1)
 
 
-;; Show a margin at 80 characters
-(require 'fill-column-indicator)
-(setq fci-rule-width 1)
-(setq fci-rule-color "grey")
-(fci-mode)
-
 ;; disable whitespace indicator
 (setq prelude-whitespace nil)
 
@@ -33,7 +34,7 @@
 (when (eq system-type 'gnu/linux)
   (set-frame-font "Ubuntu Mono-12" nil)) 
 (when (eq system-type 'windows-nt)
-    (set-frame-font "Consolas-10" nil))
+  (set-face-attribute 'default nil :family "Consolas" :height 100))
 (when (eq system-type 'darwin)
   (set-frame-font "Monaco-10" nil)
   ;; set keys for Apple keyboard, for emacs in OS X
@@ -165,6 +166,8 @@
 ;; Enable electric-pair
 (electric-pair-mode)
 
+(server-start)
+
 
 (provide 'custom)
 ;;; custom.el ends here
@@ -175,7 +178,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ido-ubiquitous flx-ido cargo rust-mode smex phi-rectangle mark-multiple fill-column-indicator jedi csharp-mode powershell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens projectile ov operate-on-number move-text magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-mode ace-jump-buffer))))
+    (erlang slime cider clojure-mode which-key super-save imenu-anywhere hl-todo editorconfig crux beacon zop-to-char zenburn-theme volatile-highlights undo-tree smex smartrep smartparens rainbow-mode rainbow-delimiters powershell phi-rectangle ov operate-on-number move-text mark-multiple magit key-chord json-mode js2-mode jedi ido-ubiquitous guru-mode grizzl gotest god-mode go-projectile gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido fill-column-indicator expand-region elisp-slime-nav easy-kill discover-my-major diminish diff-hl csharp-mode company-go company-anaconda cargo browse-kill-ring anzu ace-window ace-jump-mode ace-jump-buffer))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
